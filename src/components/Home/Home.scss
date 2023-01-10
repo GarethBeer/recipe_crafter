@@ -1,0 +1,42 @@
+@import '../../styles/colors.scss';
+
+.home {
+    position:relative;
+    padding:1rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: $neutral;
+    z-index:-20;
+    min-height:100vh;
+    .home-background-circle {
+        width:100%;
+        background-position: center;
+        z-index:-10;
+        height:300px;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+        position:absolute;
+        top:0;
+        left:0;
+    }
+
+    .display-name-text {
+        margin:100px auto 1rem 1rem;
+        width: 200px;
+        color:$secondary-light;
+        
+    }
+
+    .suggestion-card-container {
+        width:80%;
+        margin:0 auto;
+        display:flex;
+        justify-content: center;
+        p {
+            font-weight: 700;
+            color:$secondary-dark;
+        }
+    }
+}
