@@ -1,13 +1,22 @@
+import { useEffect, useState } from 'react';
+import LaunchScreen from './components/LaunchScreen/LaunchScreen';
+import LoginScreen from './components/LogInScreen/LoginScreen';
 import './styles/App.scss';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoggedIn(true)
+    }, 5000)
+  }, [])
+
   return (
     <div className="App">
-      <h1>Hello</h1>
-      <h2>H2 Heading</h2>
-      <p>
-        I am normal text
-      </p>
+    {!loggedIn ? <LaunchScreen /> :
+      <LoginScreen />}
+      
     </div>
   );
 }

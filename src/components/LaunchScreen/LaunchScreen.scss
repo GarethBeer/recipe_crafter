@@ -1,0 +1,28 @@
+.launch-screen {
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width:180px;
+        height:75px;
+    }
+    animation: fadeAndScale 3s;
+
+}
+
+@keyframes fadeAndScale {
+    0% {
+        opacity:0
+    }
+    50% {
+        opacity:1;
+        transform:scale(1.5)
+    }
+    100% {
+        opacity:1;
+        transform:scale(1)
+
+    }
+}
