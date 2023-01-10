@@ -13,7 +13,7 @@ const LoginScreen = () => {
     const [buttonClick, setButtonClick] = useState('');
     
 
-    const providers = ['google', 'apple', 'instagram', 'facebook']
+    const providers = [{name:'facebook', color:'#166FE5', key:1},{name:'apple', color: 'black', key:2}, {name:'google', color:'#EA4336', key:3}]
 
     useEffect(() => {
         const handleWindowResize = () => {
@@ -47,10 +47,10 @@ const LoginScreen = () => {
                         </Button>
                     </> : 
                     <>
-                        
-                    <Button backgroundColor='#166FE5'>Facebook <FontAwesomeIcon icon={faArrowRight} /></Button>
-                    <Button backgroundColor='#EA4336'>Google <FontAwesomeIcon icon={faArrowRight} /></Button>
-                    <Button backgroundColor='black'>Apple <FontAwesomeIcon icon={faArrowRight} /></Button>
+                        {providers && providers.map((provider: { name: string, color: string, key: number }) =>
+                            <Button backgroundColor={provider.color} key={provider.key}>{provider.name} <FontAwesomeIcon icon={faArrowRight} /></Button>)}
+                    
+                
                     </>
             }
             </div>
