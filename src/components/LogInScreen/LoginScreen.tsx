@@ -13,7 +13,7 @@ const LoginScreen = () => {
     const [buttonClick, setButtonClick] = useState('');
     
 
-    const providers = [{name:'facebook', color:'#166FE5', key:1},{name:'apple', color: 'black', key:2}, {name:'google', color:'#EA4336', key:3}]
+    const providers = [{name:'Azure', color:"blue", key:1, linkUrl:"/.auth/login/aad"}/* {name:'facebook', color:'#166FE5', key:1},{name:'apple', color: 'black', key:2}, {name:'google', color:'#EA4336', key:3} */]
 
     useEffect(() => {
         const handleWindowResize = () => {
@@ -47,8 +47,8 @@ const LoginScreen = () => {
                         </Button>
                     </> : 
                     <>
-                        {providers && providers.map((provider: { name: string, color: string, key: number }) =>
-                            <Button backgroundColor={provider.color} key={provider.key}>{provider.name} <FontAwesomeIcon icon={faArrowRight} /></Button>)}
+                        {providers && providers.map((provider: { name: string, color: string, key: number, linkUrl:string }) =>
+                            <a href={provider.linkUrl}  key={provider.key} style={{width:"100%"}}> <Button backgroundColor={provider.color}>{provider.name} <FontAwesomeIcon icon={faArrowRight} /></Button></a>)}
                     
                 
                     </>
