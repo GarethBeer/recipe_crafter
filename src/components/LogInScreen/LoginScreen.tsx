@@ -7,13 +7,18 @@ import {faArrowRight} from "@fortawesome/free-solid-svg-icons"
 import {colors} from '../../colors'
 
 
+interface Props {
+    setLoggedInUser:any;
+    setLoggedIn: any;
+}
 
-const LoginScreen = () => {
+
+const LoginScreen = ({setLoggedInUser, setLoggedIn}:Props) => {
     const [screenSize, setScreenSize] = useState(getWindowSize());
     const [buttonClick, setButtonClick] = useState('');
     
 
-    const providers = [{name:'Azure', color:"blue", key:1, linkUrl:"/.auth/login/aad"}/* {name:'facebook', color:'#166FE5', key:1},{name:'apple', color: 'black', key:2}, {name:'google', color:'#EA4336', key:3} */]
+    const providers = [{name:'Azure', color:"blue", key:1, linkUrl:"/.auth/login/aad?post_login_redirect_uri=http://localhost:4280/home"}]
 
     useEffect(() => {
         const handleWindowResize = () => {

@@ -1,8 +1,26 @@
 import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
 import LaunchScreen from './components/LaunchScreen/LaunchScreen';
 import LoginScreen from './components/LogInScreen/LoginScreen';
+import { Notifications } from './components/NotificationsScreen/Notifications';
+import { Profile } from './components/ProfileScreen/Profile';
+import { Toolbar } from './components/Toolbar/Toolbar';
 import './styles/App.scss';
+
+export interface AD_USER {
+  type: string;
+  identityProvider: string;
+  userDetails: string;
+  userRoles: string[];
+  claims: Claims[];
+  userId: string;
+  [index: string]: any;
+}
+export interface Claims {
+  typ: string;
+  val: string;
+}
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -10,16 +28,22 @@ function App() {
   const [showLaunchScreen, setShowLaunchScreen] = useState(true)
 
   useEffect(() => {
-    getUserInfo().then((res) => {
-      const fakeUser = {
-      name: 'Gareth Beer'
-    }
-      setLoggedIn(res ? true : true);
-      setLoggedInUser(fakeUser)
+    getUserInfo().then((res:AD_USER) => {
+      if (!res) {
+        setLoggedIn(false);
+        
+      } else {
+        setLoggedInUser(res)
+        setLoggedIn(true)
+      
+      }  
   })
+
     setTimeout(() => {
       setShowLaunchScreen(false)
-    }, 5000)
+    }, 3000
+  )
+  
   }, [])
 
 
@@ -45,8 +69,12 @@ const getUserInfo = async () => {
     <div className="App">
       {showLaunchScreen ? <LaunchScreen /> :
         <>
-          {loggedIn &&  <Home user={loggedInUser} />}
-          {!loggedIn && <LoginScreen /> }  
+          <Routes>
+            <Route path='/' element={loggedIn ? <Home user={loggedInUser} /> : <LoginScreen setLoggedInUser={setLoggedInUser} setLoggedIn={ setLoggedIn} />} ></Route>
+            <Route path='/profile' element={<Profile  />} ></Route>
+            <Route path='/notifications' element={<Notifications  />}  ></Route>
+          </Routes>
+          {loggedIn && <Toolbar />}
         </>
     }
       
