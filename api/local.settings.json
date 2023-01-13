@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=recipecrafter;AccountKey=6ysAkvYGig2kq6zRkxDgOD64Z5RZRNBhMz+s3KRrMzSE+msfE+o61SHm6+LcVOpuyAFV+pfvtBYK+ASt+wKOSA==;EndpointSuffix=core.windows.net",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "STORAGE_CONTAINER_NAME": "test",
+    "STORAGE_ACCOUNT_NAME": "recipecrafter",
+    "AZURE_STORAGE_CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=recipecrafter;AccountKey=6ysAkvYGig2kq6zRkxDgOD64Z5RZRNBhMz+s3KRrMzSE+msfE+o61SHm6+LcVOpuyAFV+pfvtBYK+ASt+wKOSA==;EndpointSuffix=core.windows.net",
+    "AZURE_EVENT_HUB_CONNECTION_STRING": "Endpoint=sb://recipecrafter.servicebus.windows.net/;SharedAccessKeyName=sendEvents;SharedAccessKey=iv5VnOsBtuDuZqYZ211sW6g2Zn+3QIKMDsxLpeTcJKs=;EntityPath=events",
+    "EVENT_HUB_NAME": "events",
+    "LogLevel": 1
+  }
+}

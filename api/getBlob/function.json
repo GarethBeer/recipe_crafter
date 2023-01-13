@@ -1,0 +1,26 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+
+      "methods": ["GET"]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+
+    {
+      "type": "blob",
+      "direction": "in",
+      "name": "getBlob",
+      "path": "{container}/{id}",
+      "connection": "AZURE_STORAGE_CONNECTION_STRING"
+    }
+  ],
+  "scriptFile": "../dist/getBlob/index.js"
+}
