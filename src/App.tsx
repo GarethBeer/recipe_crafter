@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
@@ -10,25 +11,25 @@ import './styles/App.scss';
 import { appState } from './services/app-state-service';
 import { useGlobalState } from './services/useGlobalState';
 import { AddRecipe } from './components/AddRecipe/AddRecipe';
-import { AD_USER, User } from './models/models';
+import { AD_USER } from './models/models';
 import { getEventsBlob } from './services/api-service';
-import { userState } from './services/user-state-service';
 import { ViewRecipe } from './components/ViewRecipe/ViewRecipe';
 
 
 
-const tempUser = {
+/* const tempUser = {
   id:'98765',
   first_name: 'Gareth',
   last_name: 'Beer',
   displayName: 'Gareth Beer',
   email: 'gareth.beer1989@outlook.com',
   description: 'I love to cook, my passion is italian foods such as lasagne'
-}
+} */
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [showLaunchScreen, setShowLaunchScreen] = useState(true)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state, setGlobalState] = useGlobalState(appState)
 
 

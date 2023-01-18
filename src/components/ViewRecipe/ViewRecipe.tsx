@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import './ViewRecipe.scss';
 import { useParams } from 'react-router-dom';
 import { Card } from '../../UI/Card/Card';
