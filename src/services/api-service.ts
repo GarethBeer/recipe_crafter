@@ -5,15 +5,17 @@ export const getEventsBlob = async (
     blob: string,
     path: string = '',
     audit: boolean = false
-  ): Promise<any> => {
+  )=> {
     return axios.get(`/api/getBlob`, {
         params: {
             id: blob,
-            container,
-            path,
-            audit
+            container:container,
+            path:path,
+            audit:audit
         }
-    });
+    })
+
+
 };
 
 export const sendEvent = (event: any, eventContainer: string): Promise<any> => {

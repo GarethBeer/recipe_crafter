@@ -5,11 +5,14 @@ const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
 ): Promise<void> {
-  context.res.json({
-    text:'Hello'
-  })
-  /* context.req!.body = context.bindings['getBlob'];
-  await getBlob(context); */
+    context.log('get blob function called')
+  context.req!.body = context.bindings['getBlob'];
+  const result = await getBlob(context);
+  context.log('result', result)
+  context.res = {
+    status: 200,
+    body: result
+  }
 };
 
 export default httpTrigger;

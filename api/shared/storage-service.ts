@@ -9,10 +9,14 @@ const eventHubName = process.env['EVENT_HUB_NAME'];
 
 export async function getBlob({ req, res }: Context) {
   try {
+    console.log('res')
+  /*   req.query.audit = 'true' */
+  
     let response = await req!.body;
-
+    console.log('response', response);
+    response.split('<Event>').filter((fil) => fil.length > 0).forEach((val:any) => console.log(val,typeof val))
     response = response
-      .split('<EVENT>')
+      .split('<Event>')
       .filter((fil) => fil.length > 0)
       .map((val) => JSON.parse(val))
       .sort((a, b) => {
@@ -41,7 +45,7 @@ export async function getBlob({ req, res }: Context) {
         .join('.');
 
       let action =
-        event.eventType.split('.')[event.eventType.split('.').length - 1];
+        event.eventType;
       if (!event.data.path) {
         if (action === 'Deleted') {
           response = await completeBlob;
@@ -66,9 +70,9 @@ export async function getBlob({ req, res }: Context) {
       response = await getNested(completeBlob, req.query.path, '.');
     }
 
-    res!['status'](200).send(addPathsToObjectsTree(response));
+    return addPathsToObjectsTree(response);
   } catch (error) {
-    res!['status'](404).send(error);
+  return error
   }
 }
 

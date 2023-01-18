@@ -12,8 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const shared_1 = require("../shared");
 const httpTrigger = function (context, req) {
     return __awaiter(this, void 0, void 0, function* () {
+        context.log('get blob function called');
         context.req.body = context.bindings['getBlob'];
-        yield (0, shared_1.getBlob)(context);
+        const result = yield (0, shared_1.getBlob)(context);
+        context.log('result', result);
+        context.res = {
+            status: 200,
+            body: result
+        };
     });
 };
 exports.default = httpTrigger;

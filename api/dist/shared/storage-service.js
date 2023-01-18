@@ -29,9 +29,13 @@ function getBlob({ req, res }) {
     var _a, e_1, _b, _c;
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            console.log('res');
+            /*   req.query.audit = 'true' */
             let response = yield req.body;
+            console.log('response', response);
+            response.split('<Event>').filter((fil) => fil.length > 0).forEach((val) => console.log(val, typeof val));
             response = response
-                .split('<EVENT>')
+                .split('<Event>')
                 .filter((fil) => fil.length > 0)
                 .map((val) => JSON.parse(val))
                 .sort((a, b) => {
@@ -61,7 +65,7 @@ function getBlob({ req, res }) {
                             .split('.')
                             .slice(1)
                             .join('.');
-                        let action = event.eventType.split('.')[event.eventType.split('.').length - 1];
+                        let action = event.eventType;
                         if (!event.data.path) {
                             if (action === 'Deleted') {
                                 response = yield completeBlob;
@@ -89,10 +93,10 @@ function getBlob({ req, res }) {
             if (req.query.path) {
                 response = yield (0, utilities_1.getNested)(completeBlob, req.query.path, '.');
             }
-            res['status'](200).send((0, utilities_1.addPathsToObjectsTree)(response));
+            return (0, utilities_1.addPathsToObjectsTree)(response);
         }
         catch (error) {
-            res['status'](404).send(error);
+            return error;
         }
     });
 }
