@@ -1,0 +1,128 @@
+@import '../../styles/colors.scss';
+
+.add-recipe {
+    width:100%;
+    z-index:12;
+    position: relative;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding:2rem;
+    background-color:$neutral ;
+    max-height: 92vh;
+    overflow-y: scroll;
+    gap:1rem;
+    .add-picture-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form {
+        display:flex;
+        gap:1rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width:100%;
+        margin:1rem 0;
+        .form-field{
+            width:100%;
+        }
+        input, textarea {
+            width:100%;
+            border-radius: 10px;
+            padding:0.3rem 1rem;
+            border:none;
+            &::placeholder {
+                font-size: small;
+            }
+        }
+
+        label {
+            padding-left:1rem;
+            font-size: x-small;
+        }
+
+        
+    }
+
+    .add-ingredients, .add-methods {
+        width:100%;
+        display: flex;
+        gap:1rem;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        h2 {
+            font-size: 15px;
+            color:$primary-purple;
+        }
+        .add-ingredient, .add-method {
+            width:100%;
+            .ingredient-top, .method-top {
+                background-color: $primary-purple;
+                width:100%;
+                padding:0.3rem 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 10px 10px 0 0;
+                color:white;
+                font-size: 12px;
+                min-height:32px;
+            }
+            .ingredient-bottom, .method-bottom {
+                height:fit-content;
+                padding:1rem;
+                background-color: #7209B780;
+                border-radius: 0 0 10px 10px;
+                width:100%;
+                display: flex;
+                flex-direction: column;
+                gap:0.5rem;
+                input, select {
+                    border:none;
+                    border-radius:5px;
+                    padding:0.3rem 0.5rem;
+                }
+                .amount, .order {
+                    width:3rem;
+                }
+                .form-row {
+                    display:flex;
+                    justify-content: flex-start;
+                    gap:0.5rem;
+                    align-items: center;
+                }
+            }
+            .active-top {
+            border-radius: 10px;
+            }
+            
+        }
+
+        .ingredients-container, .methods-container {
+            width:100%;
+            display:flex;
+            flex-direction: column;
+            gap:0.5rem;
+            
+        }
+        .ingredient {
+            width:100%;
+            background-color: $primary-purple;
+            color:white;
+            border-radius:10px;
+            padding:0.5rem 1rem;
+            display: flex;
+            justify-content: space-evenly;
+            font-size:12px;
+        }
+
+        
+    }
+
+
+}

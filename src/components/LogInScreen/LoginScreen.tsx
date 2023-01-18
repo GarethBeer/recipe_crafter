@@ -7,15 +7,11 @@ import {faArrowRight} from "@fortawesome/free-solid-svg-icons"
 import {colors} from '../../colors'
 
 
-interface Props {
-    setLoggedInUser:any;
-    setLoggedIn: any;
-}
 
-
-const LoginScreen = ({setLoggedInUser, setLoggedIn}:Props) => {
+const LoginScreen = () => {
     const [screenSize, setScreenSize] = useState(getWindowSize());
     const [buttonClick, setButtonClick] = useState('');
+
     
 
     const providers = [{name:'Azure', color:"blue", key:1, linkUrl:"/.auth/login/aad?post_login_redirect_uri=http://localhost:4280/home"}]

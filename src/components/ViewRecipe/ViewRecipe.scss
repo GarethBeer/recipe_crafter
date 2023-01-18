@@ -1,0 +1,37 @@
+.view-recipe {
+    position:absolute;
+    width:100%;
+    z-index:5;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:2rem;
+    padding:2rem;
+    .recipe-name-card {
+        width:100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap:1rem;
+        .image {
+            height:100px;
+            width:100px;
+            border-radius:50%;
+        }
+    }
+
+    .recipe-ingredients-card {
+        width:100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .ingredient-item {
+            width:100%;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
