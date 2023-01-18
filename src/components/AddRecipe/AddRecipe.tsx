@@ -5,7 +5,7 @@ import { Card } from '../../UI/Card/Card';
 import { colors} from '../../colors';
 import Button from '../../UI/Button/Button';
 import { useState } from 'react';
-import { Unit, Ingredient, Method, Recipe, User } from '../../models/models';
+import { Unit, Ingredient, Method, Recipe} from '../../models/models';
 import { v4 as uuid } from 'uuid';
 import { appState } from '../../services/app-state-service';
 import { useGlobalState } from '../../services/useGlobalState';
@@ -13,6 +13,7 @@ import { addPathsToObjectsTree } from '../../UtilitiyFunctions/utility';
 
 
 export const AddRecipe = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [units, setUnits] = useState<Unit[]>([
         { id: uuid(), unit: 'kg' },
         { id: uuid(), unit: 'lbs' },

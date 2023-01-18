@@ -1,6 +1,6 @@
-import path from "path";
+
 import { Event } from "../models/models";
-import { findChanges, getNested, reducePathToOneItem, setNestedValue } from "../UtilitiyFunctions/utility";
+import { findChanges, getNested,  setNestedValue } from "../UtilitiyFunctions/utility";
 import { sendEvent } from "./api-service";
 
 export class GlobalState {
@@ -24,7 +24,6 @@ export class GlobalState {
         const prev = structuredClone(this.state);
         let curr = structuredClone(this.state);;
         let changes;
-        let tempPath;
 
         if (state.pathString) {
             setNestedValue(curr, state.pathString, state);

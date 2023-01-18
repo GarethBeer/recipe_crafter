@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Card } from '../../UI/Card/Card';
 import './Home.scss';
 import { useEffect, useState } from 'react';
@@ -5,7 +6,7 @@ import { getEventsBlob, sendEvent } from '../../services/api-service';
 
 import { useGlobalState } from '../../services/useGlobalState';
 import { appState } from '../../services/app-state-service';
-import { AD_USER, Claims, Event, User } from '../../models/models';
+import { AD_USER, Claims, Event } from '../../models/models';
 import { isEmptyObject } from '../../UtilitiyFunctions/utility';
 
 

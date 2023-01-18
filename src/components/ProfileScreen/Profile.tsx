@@ -52,7 +52,7 @@ export const Profile = () => {
         <div className="profile-page">
             <Card className='profile-page-card'>
                 <FontAwesomeIcon icon={edit ? faFloppyDisk : faPenToSquare} className="edit-icon" onClick={handleEditMode} />
-                {state.currentUser?.profilePic ? <img /> :
+                {state.currentUser?.profilePic ? <img alt=""/> :
                     <Card width='50px' height='50px' className='add-profile-pic'>
                         <FontAwesomeIcon icon={faCamera} /></Card>}
                 {!edit && <><h2>{displayName}</h2>

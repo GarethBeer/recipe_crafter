@@ -100,7 +100,7 @@ export const findChanges: any = (prev: any, curr: any) => {
     }, {});
   
     if (isDate(prev) || isDate(curr)) {
-      if (prev.valueOf() == curr.valueOf()) return {};
+      if (prev.valueOf() === curr.valueOf()) return {};
       return curr;
     }
   
