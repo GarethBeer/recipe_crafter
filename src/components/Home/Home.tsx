@@ -1,50 +1,90 @@
 import { Card } from '../../UI/Card/Card';
 import './Home.scss';
-import { useEffect } from 'react';
-/* import {  sendEvent } from '../../services/api-service'; */
+import { useEffect, useState } from 'react';
+import { getEventsBlob, sendEvent } from '../../services/api-service';
 
-interface Props {
-    user: any
-}
-
-/* interface Event {
-    eventType: string;
-    eventTopic: string;
-    subject: string;
-    eventTime: string;
-    data:any
-} */
+import { useGlobalState } from '../../services/useGlobalState';
+import { appState } from '../../services/app-state-service';
+import { AD_USER, Claims, Event, User } from '../../models/models';
+import { isEmptyObject } from '../../UtilitiyFunctions/utility';
 
 
 
-const Home =  ({ user }: Props) =>  {
+
+
+
+const Home = () => {
+    const [state, setGlobalState] = useGlobalState(appState);
+    const [user, setUser]= useState(state.currentUser)
+
+
+    const createUser = (ad:AD_USER) => {
+        return {
+            id: ad.userId,
+            type: 'user',
+            displayName: ad.userDetails,
+            first_name: '',
+            last_name: '',
+            email: ad.claims.find((claim:Claims) => claim.typ === 'emails')?.val || ad.userDetails
+        }
+    }
+
+    const handleUserCreation = (ad:AD_USER) => {
+        const newUser: any = createUser(ad)
+        const data = {
+            path: `data:app.users:${ad.userId}`,
+
+            users:[newUser]
+        }
+        const event = new Event(data)
+        sendEvent(event, 'app').then(res => { 
+            if (res.status === 200) {
+                updateCurrentUser(newUser, true)
+                /* updateCurrentUser(data, false) */
+            }
+        }).catch(err => console.log('err', err))
+    }
+    
+    const updateCurrentUser = (user: any, setCurrentUser:boolean) => {
+        if (setCurrentUser) {
+            user.pathString = 'currentUser'
+        }
+        
+        setUser(user)
+        setGlobalState(user, 'update',false);
+    }
 
     useEffect(() => {
-        getUserInfo().then(res => {
-            
-            if (res) {
-            console.log(res)
+        if (isEmptyObject(state.currentUser)) {
+            getUserInfo().then(res => {
+                if (res) {
+                    getEventsBlob('recipecrafter', 'app').then(response => {
+                        console.log(response)
+                        const user = response.data?.users?.find((user: any) => user.id === res.userId);
+                        if (user) {
+                            updateCurrentUser(user, true)
+                        } else {
+                            console.log('no users')
+                            handleUserCreation(res)
+                        }
+                        }
+                    ).catch(err => {
+                            console.log('error', err)
+                        if (err?.response?.statusText === 'Not Found') {
+                        /*     handleUserCreation(res) */
+                            }
+                        })
+                    
+            } else {
+                console.log('no res - user non in AD')
+                }})
         } else {
-            console.log('no res')
-            }})
-        /*  const result = sendEvent({
-             eventType: 'recipecrafter',
-             eventTopic:'users.update',
-             subject: 'garethbeer',
-             id:'123456789875678',
-             data: {
-                 path:'',
-                 id: '123456',
-                 type:'user',
-                 displayName: 'Gareth Beer',
-                 email: 'gareeth.beer1989@outlook.com',
-                 first_name: 'Gareth',
-                 last_name: 'Beer',
-                 recipes: [],
-             }
-         }, 'test').then(res => console.log(res))
-         console.log(result) */
+            console.log(state.currentUser)
+            setUser(state.currentUser)
+        }
+    
     }, [])
+
 
     const getUserInfo = async () => {
         try {
@@ -66,11 +106,11 @@ const Home =  ({ user }: Props) =>  {
     }
 
     return <div className='home'>
-        <div className='home-background-circle' style={{ backgroundImage: "url('/background.png')" }}></div>
+        
         <div className='top-section'>
         <div className='display-name-text'>
             <h2>Hello,</h2>
-            <h2>{user.userDetails}!</h2>
+            <h2>{user?.displayName ? `${user.displayName}!` : `Retrieving your data...`}</h2>
         </div>
         <div className="suggestion-card-container">
         <Card height="200px">
